@@ -1,5 +1,5 @@
 from pybricks.parameters import Button
-from pybricks.hubs import EV3Brick
+from pybricks.hubs import PrimeHub
 
 from BetterClasses.EdgeDetectorEx import *
 
@@ -8,15 +8,13 @@ from BetterClasses.EdgeDetectorEx import *
 
 
 class ButtonEx:
-    def __init__(self, brick: EV3Brick):
+    def __init__(self, brick: PrimeHub):
         self.__brick = brick
 
-        # dictionary for all EV3 buttons (excepting the exit button, we don't talk about that)
+        # dictionary for all Spike Prime buttons (excepting the blothoot button, we don't talk about that)
         self.__buttons = {
             Button.LEFT: EdgeDetectorEx(), 
             Button.RIGHT: EdgeDetectorEx(), 
-            Button.UP: EdgeDetectorEx(), 
-            Button.DOWN: EdgeDetectorEx(), 
             Button.CENTER: EdgeDetectorEx()
         }
 

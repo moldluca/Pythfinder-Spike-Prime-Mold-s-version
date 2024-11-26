@@ -58,7 +58,7 @@ class Run():
 # logic for run-selection. Don't modify things here    
 class RunController():
     def __init__(self, gamepad: ButtonEx, 
-                       brick: EV3Brick, 
+                       brick: PrimeHub, 
                        telemetry: TelemetryEx,
                        led_control: LedEx,
                        run_list = None):

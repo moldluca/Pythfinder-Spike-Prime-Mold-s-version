@@ -1,4 +1,4 @@
-from pybricks.ev3devices import ColorSensor
+from pybricks.pupdevices import ColorSensor
 
 from BetterClasses.EdgeDetectorEx import *
 from Settings.constants import *

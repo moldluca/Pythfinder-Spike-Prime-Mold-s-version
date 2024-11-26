@@ -1,5 +1,5 @@
 from pybricks.parameters import Color
-from pybricks.hubs import EV3Brick
+from pybricks.hubs import PrimeHub
 
 
 # default values. You can set them any of these variants:
@@ -13,7 +13,7 @@ default_ENTERED_CENTER_color = Color.ORANGE
 
 # led control center
 class LedEx():
-    def __init__(self, brick: EV3Brick):
+    def __init__(self, brick: PrimeHub):
         self.__brick = brick
 
         self.__not_started_color = default_NOT_STARTED_color

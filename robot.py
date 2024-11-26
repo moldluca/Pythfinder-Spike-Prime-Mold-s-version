@@ -1,7 +1,7 @@
 # importing all the pybricks stuff
 
-from pybricks.hubs import EV3Brick
-from pybricks.ev3devices import (Motor, TouchSensor, ColorSensor,
+from pybricks.hubs import PrimeHub
+from pybricks.pupdevices import (Motor, TouchSensor, ColorSensor,
                                  InfraredSensor, UltrasonicSensor, GyroSensor)
 from pybricks.parameters import Port, Stop, Direction, Button, Color
 from pybricks.tools import wait, StopWatch, DataLog
@@ -22,7 +22,7 @@ from Settings.constants import *
 #               - 1 gyro sensor
 class Robot:
     def __init__(self):
-        self.brick = EV3Brick()
+        self.brick = PrimeHub()
         self.config = ConfigReader()
 
 
@@ -57,10 +57,6 @@ class Robot:
         try: self.attachmentColor = ColorSensor(self.config.attachment_color_sensor_port)
         except: self.attachmentColor = None
 
-        try:
-            self.gyro = GyroSensor(self.config.gyro_port)
-        except: raise Exception("You need to have a GYRO sensor. Please check your configuration")
-
 
 
         self.led_control = LedEx(self.brick)
@@ -75,15 +71,19 @@ class Robot:
 
         self.voltage = 0
 
-        if up_side_down_gyro:
+        if self.brick.imu.tilt()[1] < 0:  # Example: checks if the IMU tilt indicates being upside down
             self.__gyro_direction = -1
-        else: self.__gyro_direction = 1
+        else:
+            self.__gyro_direction = 1
 
-        if front_side_back_gyro:
+        # Handle the front-to-back configuration (use tilt or another property from IMU)
+        if self.brick.imu.tilt()[0] < 0:  # Example: based on front/back tilt
             self.config.PID_multiplier *= -1
-        else: self.config.PID_multiplier *= 1
+        else:
+            self.config.PID_multiplier *= 1
 
-        if not self.attachmentColor == None:
+        # Color sensor logic remains unchanged
+        if self.attachmentColor is not None:
             self.run_control.addColorSensor(self.attachmentColor)
     
 

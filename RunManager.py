@@ -13,8 +13,14 @@ from robot import *
 # set gyro orientation in **constants.py** if needed
 core = Robot()
 
+trajectory0 = (Trajectory()
+               .read('run0'))
+
 trajectory1 = (Trajectory()
-               .read('test'))
+               .read('run1'))
+
+trajectory2 = (Trajectory()
+               .read('run2'))
 
 
 
@@ -32,10 +38,10 @@ def stop_run():
 
 # create functions for each run you want to do
 def run1():
-    return 0
+    trajectory1.follow(core)
 
 def run2():
-    return 0
+    trajectory2.follow(core)
 
 def run3():
     return 0
@@ -56,17 +62,14 @@ def dummy():
     wait(1000)
 
 def test():
-    trajectory1.follow(core)
+    trajectory0.follow(core)
 
 
 
 
 # create a list of ---Run--- objects, binded to a button (NOT ---Button.CENTER---), giving a function
 #         and optional ---one_time_use--- and  ---with_center---- combination
-run_list = [Run(Button.UP, function = test, one_time_use =  False, with_center = False),
-            Run(Button.LEFT, function = dummy, one_time_use = False),
-            Run(Button.DOWN, function = dummy, one_time_use = False),
-            Run(Button.DOWN, function = dummy, one_time_use = False)]
+run_list = [Run(Button.LEFT, function = test, one_time_use = False)]
 
 # MANDATORY!!! add a run list to the run controller from the robot class
 #               otherwise, you'll get an error

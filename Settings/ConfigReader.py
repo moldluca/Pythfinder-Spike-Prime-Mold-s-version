@@ -70,16 +70,11 @@ class ConfigReader():
             return Port.C
         if config_port == 'D':
             return Port.D
+        if config_port == 'E':
+            return Port.E
+        if config_port == 'F':
+            return Port.F
         
-        if config_port == '1':
-            return Port.S1
-        if config_port == '2':
-            return Port.S2
-        if config_port == '3':
-            return Port.S3
-        if config_port == '4':
-            return Port.S4
-
         return None
     
     def __matchDirection(self, config_direction: str) -> Port:

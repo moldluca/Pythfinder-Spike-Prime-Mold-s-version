@@ -1,8 +1,8 @@
-from pybricks.hubs import EV3Brick
+from pybricks.hubs import PrimeHub
 
 # generic class for message showcasing on brick's screen
 class TelemetryEx():
-    def __init__(self, brick: EV3Brick):
+    def __init__(self, brick: PrimeHub):
         self.__brick = brick
     
     def addData(self, *message):
